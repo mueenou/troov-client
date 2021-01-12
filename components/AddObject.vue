@@ -1,9 +1,4 @@
 <template>
-  <!-- <div class="w-screen modal-container z-40">
-        <div class="lg:w-1/5 xs:w-1/5 w-48 bg-white z-50">
-            <h2 class="text-gray-900">this is the modifier modal {{object.name}}</h2>
-        </div>
-    </div> -->
   <div class="fixed z-10 inset-0 overflow-y-auto">
     <div
       class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0"
@@ -11,8 +6,6 @@
       <div class="fixed inset-0 transition-opacity" aria-hidden="true">
         <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
       </div>
-
-      <!-- This element is to trick the browser into centering the modal contents. -->
       <span
         class="hidden sm:inline-block sm:align-middle sm:h-screen"
         aria-hidden="true"
@@ -29,8 +22,6 @@
             <div
               class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10"
             >
-              <!-- Heroicon name: exclamation -->
-
               <svg
                 class="h-6 w-6 text-blue-600"
                 xmlns="http://www.w3.org/2000/svg"
