@@ -1,5 +1,4 @@
 <template>
-  <!-- This example requires Tailwind CSS v2.0+ -->
   <header
     class="bg-gray-800 shadow-md sm:flex sm:justify-between sm:px-4 sm:py-3"
   >
@@ -63,7 +62,7 @@
         @click.native="$auth.logout()"
         class="block px-4 py-1 mt-1 rounded text-white font-semibold hover:bg-gray-700 sm:mt-0"
         to="/login"
-        >Logout</nuxt-link
+        >Déconnexion</nuxt-link
       >
     </div>
     <div
@@ -79,12 +78,12 @@
       <nuxt-link
         to="/login"
         class="block px-4 py-1 rounded text-white font-semibold hover:bg-gray-700 sm:mt-0"
-        >Login</nuxt-link
+        >Connexion</nuxt-link
       >
       <nuxt-link
         to="/register"
         class="block px-4 py-1 mt-1 rounded text-white font-semibold hover:bg-gray-700 sm:mt-0"
-        >Register</nuxt-link
+        >Inscription</nuxt-link
       >
     </div>
   </header>

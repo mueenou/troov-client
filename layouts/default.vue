@@ -1,18 +1,26 @@
 <template>
   <div class="main-container min-w-1/5">
-    <Navbar/>
+    <Navbar />
+    <div class="text-center mt-16 leading-10">
+      <h1 class="text-white text-xl font-bold tracking-widest">
+        Bienvenue sur Troov !
+      </h1>
+      <blockquote class="italic text-lg text-white">
+        Avec <span class="text-green-600">Troov</span>, ne stressez plus d'avoir
+        perdu vos clées !
+      </blockquote>
+    </div>
     <Nuxt />
   </div>
 </template>
 
 <script>
-import Navbar from '@/components/Navbar'
+import Navbar from "@/components/Navbar";
 
 export default {
   components: { Navbar },
-  mounted() {
-  }
-}
+  mounted() {}
+};
 </script>
 
 <style>
