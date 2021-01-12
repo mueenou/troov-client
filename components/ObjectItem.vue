@@ -13,11 +13,10 @@
           </p>
         </div>
         <div
-          v-if="object.author === $auth.user._id"
+          v-if="$auth.user ==! null || ($auth.user && object.author === $auth.user._id)"
           class="action-buttons justify-between flex"
         >
           <button
-            v-if="object.author === $auth.user._id"
             @click="showDeleteModal = true"
             class="hover:bg-red-300 rounded-full p-1 font-medium bg-red-200 focus:outline-none"
           >
@@ -37,7 +36,6 @@
             </svg>
           </button>
           <button
-            v-if="object.author === $auth.user._id"
             @click="showModal = true"
             class="hover:bg-green-300 rounded-full p-1 font-medium bg-green-200 focus:outline-none"
           >
