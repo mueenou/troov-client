@@ -1,7 +1,7 @@
 <template>
   <div class="lg:p-16 p-3">
-    <h1 class="w-auto text-white font-bold my-16 text-xl border-b-2">
-      Tous les objets perdus
+    <h1 class="text-white font-bold my-16 text-xl border-b-2">
+      Mes objets perdus
     </h1>
     <button
       @click="showAddModal = true"
@@ -22,37 +22,53 @@
       </svg>
     </button>
     <client-only>
-      <div class="w-100 flex flex-wrap justify-evenly mx-auto mt-8">
+      <div
+        v-if="objects.length > 0"
+        class="w-100 flex flex-wrap justify-evenly mx-auto mt-8"
+      >
         <ObjectItem
           class="mt-6 h-48"
-          v-for="(object, i) in allObjects"
+          v-for="(object, i) in objects"
           :key="i"
           :object="object"
         />
       </div>
+      <div v-else class="w-100 mt-10">
+        <h2 class="text-center text-white text-lg font-bold">
+          Vous n'avez pas d'objets perdus
+        </h2>
+      </div>
     </client-only>
     <AddObject v-if="showAddModal" @close="showAddModal = false" />
+    <!-- <add-modal v-if="showAddModal" @close="showAddModal = false"/> -->
   </div>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
 import AddObject from "../components/AddObject.vue";
 import ObjectItem from "../components/ObjectItem.vue";
 export default {
   components: { ObjectItem, AddObject },
+  middleware: "authenticated",
+  async asyncData({ app, store, axios }) {
+    const token = store.$auth.getToken("local").split(" ")[1];
+    const objects = await app.$axios
+      .get("/objects/user/object", {
+        headers: {
+          Authorization: token,
+          "Content-Type": "application/json"
+        }
+      })
+      .then(response => {
+        store.dispatch("handleGetUserData", response.data);
+        return response.data;
+      });
+    return { objects };
+  },
   data() {
     return {
-      showAddModal: false,
-      allObjects: null
+      showAddModal: false
     };
-  },
-  computed: {},
-  async asyncData({ app, store }) {
-    const allObjects = await app.$axios.get("/objects").then(response => {
-      return response.data;
-    });
-    return { allObjects };
   }
 };
 </script>
