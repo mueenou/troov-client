@@ -4,22 +4,39 @@
   >
     <div class="flex justify-between items-center px-4 py-3 sm:p-0">
       <nuxt-link
-        class="text-lg text-white tracking-widest font-bold p-3 rounded shadow-medium bg-green-600"
+        class="
+          text-lg text-white
+          tracking-widest
+          font-bold
+          p-3
+          rounded
+          shadow-medium
+          bg-green-600
+        "
         to="/"
         >TROOV</nuxt-link
       >
       <div v-if="$auth.loggedIn">
         <span
-          class="text-white sm:ml-16 font-semibold bg-gray-900 rounded p-1 pb-2 px-2"
+          class="
+            text-white
+            sm:ml-16
+            font-semibold
+            bg-gray-900
+            rounded
+            p-1
+            pb-2
+            px-2
+          "
         >
           {{ $auth.user.email }}
         </span>
       </div>
       <div class="sm:hidden">
         <button
-          @click="isOpen = !isOpen"
           type="button"
           class="block focus:outline-none"
+          @click="isOpen = !isOpen"
         >
           <svg
             class="h-6 w-6 text-gray-500 hover:text-white"
@@ -49,19 +66,49 @@
       class="px-2 pt-2 pb-4 sm:flex sm:p-0 sm:items-center sm:px-2"
     >
       <nuxt-link
-        class="block px-4 py-1 mt-1 rounded text-white font-semibold hover:bg-gray-700 sm:mt-0"
+        class="
+          block
+          px-4
+          py-1
+          mt-1
+          rounded
+          text-white
+          font-semibold
+          hover:bg-gray-700
+          sm:mt-0
+        "
         to="/objects"
         >Mes objets</nuxt-link
       >
       <nuxt-link
-        class="block px-4 py-1 mt-1 rounded text-white font-semibold hover:bg-gray-700 sm:mt-0"
+        class="
+          block
+          px-4
+          py-1
+          mt-1
+          rounded
+          text-white
+          font-semibold
+          hover:bg-gray-700
+          sm:mt-0
+        "
         to="/"
         >Tous les objets</nuxt-link
       >
       <nuxt-link
-        @click.native="$auth.logout()"
-        class="block px-4 py-1 mt-1 rounded text-white font-semibold hover:bg-gray-700 sm:mt-0"
+        class="
+          block
+          px-4
+          py-1
+          mt-1
+          rounded
+          text-white
+          font-semibold
+          hover:bg-gray-700
+          sm:mt-0
+        "
         to="/login"
+        @click.native="$auth.logout()"
         >Déconnexion</nuxt-link
       >
     </div>
@@ -71,18 +118,47 @@
       class="px-2 pt-2 pb-4 sm:flex sm:p-0 sm:items-center sm:px-2"
     >
       <nuxt-link
-        class="block px-4 py-1 mt-1 rounded text-white font-semibold hover:bg-gray-700 sm:mt-0"
+        class="
+          block
+          px-4
+          py-1
+          mt-1
+          rounded
+          text-white
+          font-semibold
+          hover:bg-gray-700
+          sm:mt-0
+        "
         to="/"
         >Tous les objets</nuxt-link
       >
       <nuxt-link
         to="/login"
-        class="block px-4 py-1 rounded text-white font-semibold hover:bg-gray-700 sm:mt-0"
+        class="
+          block
+          px-4
+          py-1
+          rounded
+          text-white
+          font-semibold
+          hover:bg-gray-700
+          sm:mt-0
+        "
         >Connexion</nuxt-link
       >
       <nuxt-link
         to="/register"
-        class="block px-4 py-1 mt-1 rounded text-white font-semibold hover:bg-gray-700 sm:mt-0"
+        class="
+          block
+          px-4
+          py-1
+          mt-1
+          rounded
+          text-white
+          font-semibold
+          hover:bg-gray-700
+          sm:mt-0
+        "
         >Inscription</nuxt-link
       >
     </div>
@@ -91,13 +167,13 @@
 
 <script>
 export default {
+  name: "Navbar",
   components: {},
-  name: "navbar",
   data() {
     return {
-      isOpen: false
+      isOpen: false,
     };
-  }
+  },
 };
 </script>
 

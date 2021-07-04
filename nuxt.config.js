@@ -5,9 +5,15 @@ export default {
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { hid: "description", name: "description", content: "" }
+      { hid: "description", name: "description", content: "" },
     ],
-    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }]
+    link: [
+      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+      {
+        rel: "stylesheet",
+        href: "https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css",
+      },
+    ],
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
@@ -22,7 +28,7 @@ export default {
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
   buildModules: [
     // https://go.nuxtjs.dev/tailwindcss
-    "@nuxtjs/tailwindcss"
+    "@nuxtjs/tailwindcss",
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
@@ -31,8 +37,8 @@ export default {
   axios: {
     baseURL: "http://localhost:5000/api/",
     common: {
-      Accept: "application/json, text/plain, */*"
-    }
+      Accept: "application/json, text/plain, */*",
+    },
   },
 
   auth: {
@@ -41,20 +47,31 @@ export default {
         login: "/",
         logout: "/login",
         register: "/",
-        home: "/"
+        home: "/",
       },
       local: {
         endpoints: {
           login: { url: "/user/login", method: "post", propertyName: "token" },
           logout: { url: "/api/user/logout", method: "post" },
-          user: { url: "/user", method: "get", propertyName: "user" }
-        }
+          user: { url: "/user", method: "get", propertyName: "user" },
+        },
         // tokenRequired: true,
-      }
-    }
+      },
+    },
   },
 
   router: {},
   // Build Configuration (https://go.nuxtjs.dev/config-build)
-  build: {}
+  build: {
+    extend(config, ctx) {
+      if (ctx.isDev && ctx.isClient) {
+        config.module.rules.push({
+          enforce: "pre",
+          test: /\.(js|vue|ts)$/,
+          loader: "eslint-loader",
+          exclude: /(node_modules)/,
+        });
+      }
+    },
+  },
 };

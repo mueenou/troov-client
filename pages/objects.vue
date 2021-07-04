@@ -4,8 +4,20 @@
       Mes objets perdus
     </h1>
     <button
+      class="
+        add-button
+        h-12
+        w-12
+        text-blue-600
+        hover:bg-gray-200
+        bg-white
+        rounded-full
+        mx-auto
+        block
+        shadow-lg
+        focus:outline-none
+      "
       @click="showAddModal = true"
-      class="add-button h-12 w-12 text-blue-600 hover:bg-gray-200 bg-white rounded-full mx-auto block shadow-lg focus:outline-none"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -27,9 +39,9 @@
         class="w-100 flex flex-wrap justify-evenly mx-auto mt-8"
       >
         <ObjectItem
-          class="mt-6 h-48"
           v-for="(object, i) in objects"
           :key="i"
+          class="mt-6 h-48"
           :object="object"
         />
       </div>
@@ -50,16 +62,16 @@ import ObjectItem from "../components/ObjectItem.vue";
 export default {
   components: { ObjectItem, AddObject },
   middleware: "authenticated",
-  async asyncData({ app, store, axios }) {
+  async asyncData({ app, store }) {
     const token = store.$auth.getToken("local").split(" ")[1];
     const objects = await app.$axios
       .get("/objects/user/object", {
         headers: {
           Authorization: token,
-          "Content-Type": "application/json"
-        }
+          "Content-Type": "application/json",
+        },
       })
-      .then(response => {
+      .then((response) => {
         store.dispatch("handleGetUserData", response.data);
         return response.data;
       });
@@ -67,9 +79,9 @@ export default {
   },
   data() {
     return {
-      showAddModal: false
+      showAddModal: false,
     };
-  }
+  },
 };
 </script>
 

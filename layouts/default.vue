@@ -6,7 +6,7 @@
         Bienvenue sur Troov !
       </h1>
       <blockquote class="italic text-lg text-white">
-        Avec <span class="text-green-600">Troov</span>, ne stressez plus d'avoir
+        Avec <span class="text-green-500">Troov</span>, ne stressez plus d'avoir
         perdu vos clées !
       </blockquote>
     </div>
@@ -19,7 +19,7 @@ import Navbar from "@/components/Navbar";
 
 export default {
   components: { Navbar },
-  mounted() {}
+  mounted() {},
 };
 </script>
 

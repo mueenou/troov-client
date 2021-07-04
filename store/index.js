@@ -4,7 +4,6 @@ export const state = () => ({
   darkMode: false,
   userObjects: null,
   token: "",
-  userObjects: null
 });
 
 export const getters = {};
@@ -22,7 +21,7 @@ export const mutations = {
   setUserDatas(state, payload) {
     console.log(payload);
     state.userObjects = payload;
-  }
+  },
 };
 
 export const actions = {
@@ -31,5 +30,5 @@ export const actions = {
   },
   handleGetUserData({ commit }, data) {
     commit("setUserDatas", data);
-  }
+  },
 };
