@@ -41,7 +41,7 @@
         <ObjectItem
           v-for="(object, i) in objects"
           :key="i"
-          class="mt-6 h-48"
+          class="mt-6"
           :object="object"
         />
       </div>

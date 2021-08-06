@@ -1,7 +1,6 @@
 export const strict = false;
 
 export const state = () => ({
-  darkMode: false,
   userObjects: null,
   token: "",
 });

@@ -254,8 +254,8 @@ export default {
   },
   methods: {
     cancelModification() {
-      this.$router.go({ path: this.$router.path, force: true });
       this.$emit("close");
+      this.$nuxt.refresh();
     },
     modifyObject() {
       const token = this.$auth.getToken("local").split(" ")[1];
@@ -277,5 +277,3 @@ export default {
   },
 };
 </script>
-
-<style scoped></style>

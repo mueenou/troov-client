@@ -6,7 +6,6 @@
         bg-white
         relative
         min-h-full
-        h-48
         rounded
         shadow-lg
         mb-5
@@ -20,7 +19,21 @@
           <div class="font-bold text-lg mb-2">
             {{ object.name.charAt(0).toUpperCase() + object.name.slice(1) }}
           </div>
-          <p class="text-gray-700 text-base">
+          <div class="image-container">
+            <carousel v-bind="options">
+              <slide
+                v-for="img in object.images"
+                :key="img.fileName"
+                class="img-wrapper"
+              >
+                <img
+                  :src="`http://localhost:5000/${img.filePath}`"
+                  :alt="img.fileName"
+                />
+              </slide>
+            </carousel>
+          </div>
+          <p class="text-gray-700 text-base mt-5">
             {{ object.description }}
           </p>
         </div>
@@ -117,6 +130,13 @@ export default {
     return {
       showModal: false,
       showDeleteModal: false,
+      options: {
+        paginationColor: "#afeeee",
+        paginationActiveColor: "#38a169",
+        loop: true,
+        perPage: 1,
+        paginationEnabled: true,
+      },
     };
   },
   methods: {},
@@ -145,9 +165,46 @@ export default {
   }
 }
 
+.object-container {
+  min-height: 20rem;
+}
+
+.image-container {
+  width: 220px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  height: 150px;
+}
+
+.image-container img {
+  height: 150px;
+  width: 220px;
+  object-fit: contain;
+}
+
 .action-buttons {
   position: absolute;
   right: 10px;
   width: 55px;
+}
+
+.VueCarousel-slide {
+  text-align: center;
+}
+.img-wrapper img {
+  margin: auto;
+  width: 200px;
+  height: 150px;
+}
+</style>
+
+<style>
+.VueCarousel-dot-container {
+  margin-top: -20px !important;
+}
+button:focus {
+  outline: none !important;
 }
 </style>

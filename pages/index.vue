@@ -26,9 +26,8 @@
         <ObjectItem
           v-for="(object, i) in allObjects"
           :key="i"
-          class="mt-6 h-48"
+          class="mt-6"
           :object="object"
-          @refresh="asyncData"
         />
       </div>
     </client-only>

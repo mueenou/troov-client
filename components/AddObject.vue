@@ -120,6 +120,23 @@
                 "
                 placeholder="lost_dpt"
               />
+              <input
+                type="file"
+                class="
+                  text-sm
+                  bg-gray-200
+                  rounded
+                  px-1
+                  block
+                  mt-1
+                  leading-6
+                  font-medium
+                  text-gray-900
+                  focus:outline-none
+                "
+                multiple
+                @change="handleFiles($event)"
+              />
             </div>
           </div>
         </div>
@@ -200,25 +217,57 @@ export default {
         lost_dpt: "",
         _id: "",
       },
+      files: [],
+      addedObjectId: "",
     };
   },
 
   methods: {
-    addObject() {
+    handleFiles(e) {
+      // console.log(e.target.files);
+      this.files = e.target.files;
+      console.log(this.files);
+    },
+    async addObject() {
       const token = this.$auth.getToken("local").split(" ")[1];
-      this.$axios
+      await this.$axios
         .post("/objects/user/object", this.newObject, {
           headers: {
             Authorization: token,
             "Content-Type": "application/json",
           },
         })
-        .then((response) => {
+        .then(async (response) => {
           console.log(response.data);
-          this.$emit("close");
+          this.addedObjectId = response.data.object;
+          if (this.files.length > 0) {
+            const formData = new FormData();
+            // formData.append("files", this.files[0]);
+            this.files.forEach((file) => {
+              formData.append("files", file);
+            });
+            return await this.$axios
+              .put(
+                `/objects/user/object/images/add/${this.addedObjectId}`,
+                formData,
+                {
+                  headers: {
+                    "Content-Type": "multipart/form-data",
+                  },
+                }
+              )
+              .then((res) => {
+                console.log(res);
+              });
+          }
         })
         .then(() => {
+          this.$emit("close");
           this.$nuxt.refresh();
+        })
+        .catch((err) => {
+          console.log(err);
+          throw err;
         });
     },
   },
